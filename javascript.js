@@ -1,4 +1,6 @@
 console.log(`Start of the game`);
+let userScore = 0;
+let computerScore = 0;
 
 //Function to generate choice for the computer
 function getComputerChoice() {

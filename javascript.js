@@ -1,4 +1,6 @@
-console.log(`Start of the game`);
+console.log(`ROCK, PAPERS, SCISSORS
+    Let's start the game!`);
+
 let userScore = 0;
 let computerScore = 0;
 
@@ -9,36 +11,63 @@ function getComputerChoice() {
 
     if (computerChoice > 0.66) {
         computerChoice = `rock`;
-        console.log(computerChoice);
     }
     else if (computerChoice < 0.66 && computerChoice >= 0.33) {
         computerChoice = `paper`;
-        console.log(computerChoice);
     }
 
     else if (computerChoice < 0.33) {
-        computerChoice = `cut`;
-        console.log(computerChoice);
+        computerChoice = `scissors`;
     }
+    return computerChoice;
 }
 
-//Function to prompt user to enter choice
+//Function to prompt a user to enter choice
 function getUserChoice() {
-    let userChoice = prompt(`Please choose between rock, paper and cut`);
+    let userChoice = prompt(`Please choose between rock, paper and scissors`);
     userChoice = userChoice.toLowerCase();
-    console.log(userChoice);
+    
+    return userChoice;
 
-    if (userChoice === `rock`) {
-        userChoice = 0.66;
-        console.log(userChoice);
-    }
-    else if(userChoice === `paper`) {
-        userChoice = 0.33;
-        console.log(userChoice);
-    }
-    else if(userChoice === `cut`)
-        userChoice = 0;
-        console.log(userChoice);
 }
-getComputerChoice();
-getUserChoice();
+
+
+//Function to play a round
+let humanChoice = 0;
+let machineChoice = 0;
+
+function playRound(user,computer){
+
+    if(humanChoice === 'rock' && machineChoice === 'scissors') {
+        console.log('User wins');
+        userScore++;
+    }
+    else if(humanChoice === 'paper' && machineChoice === 'rock') {
+        console.log('User wins');
+        userScore++;
+    }    
+    else if(humanChoice === 'scissors' && machineChoice === 'paper') {
+        console.log('User wins');
+        userScore++;
+    }
+
+    else if(humanChoice === machineChoice) {
+        console.log(`It's a tie!`)
+    }
+    else {
+    console.log('Computer wins');
+    computerScore++;
+    }
+}
+
+//Playing 5 rounds of game
+
+for(let i = 0; i < 5; i++) {
+    humanChoice = getUserChoice();
+    console.log('You chose:',humanChoice);
+    machineChoice = getComputerChoice();
+    console.log('Computer chose:',machineChoice);
+    playRound(humanChoice,machineChoice);
+}
+console.log('User:',userScore);
+console.log('Computer:',computerScore);
